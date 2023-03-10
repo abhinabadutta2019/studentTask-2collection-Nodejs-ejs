@@ -1,0 +1,11 @@
+<body>
+  <h2>Tasks</h2>
+  <ul>
+    <% tasks.forEach(task => { %>
+    <li>
+      <p><%= task.name %></p>
+      <p><%= task.completed %></p>
+    </li>
+    <% }) %>
+  </ul>
+</body>

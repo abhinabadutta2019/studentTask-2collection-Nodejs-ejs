@@ -1,0 +1,21 @@
+<body>
+  <h1>Students</h1>
+  <ul>
+    <% students.forEach(student => { %>
+    <li>
+      <p>Name:<%= student.name %></p>
+      <p>Password:<%= student.password %></p>
+    </li>
+    <% }) %>
+  </ul>
+  <!--  -->
+  <h2>Tasks</h2>
+  <ul>
+    <% tasks.forEach(task => { %>
+    <li>
+      <p><%= task.name %></p>
+      <p><%= task.completed %></p>
+    </li>
+    <% }) %>
+  </ul>
+</body>
