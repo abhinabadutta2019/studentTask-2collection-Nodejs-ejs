@@ -5,6 +5,7 @@
     <li>
       <p>Name:<%= student.name %></p>
       <p>Password:<%= student.password %></p>
+      <button id="<%= student.id %>" onclick="onDetails()">Detail</button>
     </li>
     <% }) %>
   </ul>
@@ -18,4 +19,18 @@
     </li>
     <% }) %>
   </ul>
+
+  <script>
+    function onDetails() {
+      let id = event.srcElement.id;
+
+      fetch(`students/single/${id}`, { method: "GET" }).then((response) => {
+        console.log(id);
+
+        //redirect
+        window.location.href = `${window.location.href}/single/${id}`;
+        return;
+      });
+    }
+  </script>
 </body>
