@@ -1,0 +1,28 @@
+<body>
+  <h3>Create Student</h3>
+  <!-- <form action="/students/form" method="post"> -->
+  <form action="#">
+    <label for="name">Student Name</label>
+    <input type="text" id="fname" name="name" />
+    <label for="password">Student password</label>
+    <input type="text" id="fpass" name="password" />
+  </form>
+  <button type="submit" onclick="onCreate()">submit</button>
+
+  <script>
+    function onCreate() {
+      console.log("Hi");
+      //
+      const name = document.getElementById("fname").value;
+      //   console.log(name);
+      const password = document.getElementById("fpass").value;
+      //   console.log(password);
+      //
+      fetch(`/students/form?studentName=${name}&studentPassword=${password}`, {
+        method: "POST",
+      }).then((response) => {
+        console.log("Hi1");
+      });
+    }
+  </script>
+</body>

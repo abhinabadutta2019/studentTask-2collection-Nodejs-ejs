@@ -1,4 +1,5 @@
 const express = require("express");
+const { default: mongoose } = require("mongoose");
 const Student = require("../model/student");
 const Task = require("../model/task");
 const router = express.Router();
@@ -12,6 +13,27 @@ router.get("/", async (req, res) => {
   res.render("index.ejs", { tasks: tasks, students: students });
 });
 
+//get/create route
+router.get("/form", (req, res) => {
+  res.render("studentForms");
+});
+
+//add a student form
+router.post("/form", async (req, res) => {
+  const studentName = req.query.studentName;
+  const studentPassword = req.query.studentPassword;
+  // console.log(studentName, studentPassword);
+  console.log(req.query);
+
+  await Student.create({ name: studentName, password: studentPassword });
+
+  // console.log(student);
+
+  //
+  // await student.save({ a, pass });
+
+  res.send();
+});
 //get single page
 
 router.get("/single/:id", async (req, res) => {
@@ -33,7 +55,7 @@ router.get("/seed", async (req, res) => {
 
   //add sample
   await Student.create([
-    { name: "abc", password: "1a" },
+    { name: "abca", password: "1a" },
     { name: "def", password: "sa" },
     { name: "ghi", password: "sdaf" },
   ]);
