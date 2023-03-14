@@ -1,5 +1,98 @@
 <body>
-  <h3>Student Details</h3>
-  <p>Name: <%= student.name %></p>
-  <p>Id: <%= student.id %></p>
+  <div>
+    <h3>Student Details</h3>
+    <p>Name: <%= student.name %></p>
+    <!--  -->
+    studentId:<span id="studentId"><%= student.id %></span>
+  </div>
+  <!--Task form  -->
+  <!--Task form  -->
+  <!--Task form  -->
+  <div>
+    <h3>Create tasks</h3>
+    <form action="#">
+      <label for="name">Task Name</label>
+      <input type="text" id="tname" name="name" />
+      <!-- checkbox -->
+      <label for="completed">Task completed</label>
+      <input class="messageCheckbox" type="checkbox" value="1" name="true" />
+      <!-- <input class="messageCheckbox" type="checkbox" value="1" name="false" /> -->
+    </form>
+    <button type="submit" onclick="onCreateTask()">submit</button>
+  </div>
+  <!--All tasks of this student   -->
+  <!--All tasks of this student   -->
+  <!--All tasks of this student   -->
+  <div>
+    <h3>Get All tasks of this student</h3>
+    <button type="submit" onclick="allTasksofThis()">
+      All task of this student
+    </button>
+  </div>
+  <!--  -->
+  <!--  -->
+  <script>
+    ///////////////////////////////////////////
+    ///////////////////////////////////////////
+    function allTasksofThis() {
+      console.log("Hi");
+      //get studentid form url/window object
+      const studentId = window.location.href.split("/")[5];
+
+      console.log(studentId);
+      //--/tasks
+      //
+      // fetch(`/tasks/allTasksThisUser?studentId=${studentId}`
+      fetch(`/tasks/allTasksThisUser`, {
+        method: "GET",
+      }).then((response) => {
+        console.log("Hi12");
+        //page reload
+        // window.location.reload();
+        //
+        //redirect
+        // window.location.href = "/students/single/64107fae083e022a0809b0f3";
+      });
+    }
+    //////////////////////////////////////////
+    /////////////////////////////////////////
+    //create task form
+    function onCreateTask() {
+      console.log("Hi");
+      //get studentid form url/window object
+      const studentId = window.location.href.split("/")[5];
+
+      console.log(studentId);
+      //
+
+      //
+      const name = document.getElementById("tname").value;
+      //   console.log(name);
+      let checkedValue = false;
+      //checkbox javascript code
+      let inputElements = document.getElementsByClassName("messageCheckbox");
+      for (let i = 0; inputElements[i]; ++i) {
+        if (inputElements[i].checked) {
+          checkedValue = inputElements[i].value;
+
+          break;
+        }
+      }
+      //
+
+      console.log(checkedValue);
+      //
+      //
+      fetch(
+        `/tasks/form?taskName=${name}&completed=${checkedValue}&studentId=${studentId}`,
+        {
+          method: "POST",
+        }
+      ).then((response) => {
+        console.log("Hi1");
+        //page reload
+        window.location.reload();
+      });
+    }
+  </script>
 </body>

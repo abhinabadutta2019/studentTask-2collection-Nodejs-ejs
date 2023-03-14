@@ -12,8 +12,50 @@ router.get("/", async (req, res) => {
   res.send();
 });
 
+// post route
+//task form in student detail page
+router.post("/form", async (req, res) => {
+  console.log(req.query);
+
+  // const task = await Task.create({
+  //   name: req.query.taskName,
+  //   completed: req.query.completed,
+  //   postedBy: req.query.studentId,
+  // });
+  // console.log(task, "task");
+
+  //
+  // const populatedTask = await Task.findById({ _id: task.id }).populate(
+  //   "postedBy"
+  // );
+  // console.log(populatedTask, "populatedTask");
+
+  //
+  const taskofSameId = await Task.find({
+    postedBy: req.query.studentId,
+  });
+  //
+  console.log(taskofSameId.length, "false11");
+  res.send();
+});
+
 //
 
+//
+router.get("/allTasksThisUser", async (req, res) => {
+  // console.log(req.url);
+  // console.log(req.query.studentId);
+  // const taskofSameId = await Task.find({
+  //   postedBy: req.query.studentId,
+  // });
+  //
+  // console.log(taskofSameId, "false11");
+
+  res.send();
+  // res.render("index.ejs");
+});
+
+//
 router.get("/create", async (req, res) => {
   const task = await Task.create({
     name: "new111 vv",

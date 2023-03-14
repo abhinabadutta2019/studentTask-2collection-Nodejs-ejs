@@ -48,6 +48,11 @@ router.get("/single/:id", async (req, res) => {
   }
 });
 
+//
+router.post("/allTasksThisUser", async (req, res) => {
+  console.log(req.url);
+});
+
 //seed route
 router.get("/seed", async (req, res) => {
   //delete all existing
