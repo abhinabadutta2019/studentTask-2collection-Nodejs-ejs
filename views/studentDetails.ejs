@@ -40,19 +40,22 @@
       const studentId = window.location.href.split("/")[5];
 
       console.log(studentId);
+
       //--/tasks
       //
       // fetch(`/tasks/allTasksThisUser?studentId=${studentId}`
-      fetch(`/tasks/allTasksThisUser`, {
-        method: "GET",
-      }).then((response) => {
-        console.log("Hi12");
-        //page reload
-        // window.location.reload();
-        //
-        //redirect
-        // window.location.href = "/students/single/64107fae083e022a0809b0f3";
-      });
+      // fetch(`/tasks/allTasksThisUser`, {
+      //   method: "GET",
+      // }).then((response) => {
+      //   console.log("Hi12");
+      //   //page reload
+      //   // window.location.reload();
+      //   //
+      //   //redirect
+      //   // window.location.href = "/students/single/64107fae083e022a0809b0f3";
+      // });
+      //browser e fetch call kore nicche -under the hood
+      window.location.href = `http://localhost:3008/tasks/allTasksThisUser?studentId=${studentId}`;
     }
     //////////////////////////////////////////
     /////////////////////////////////////////

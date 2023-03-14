@@ -1,3 +1,12 @@
 <body>
-  Hi
+  <h3>Alltasks of this user</h3>
+  <div>
+    <% alltasks.forEach(task => { %>
+    <li>
+      <p>task.id: <%= task.id %></p>
+      <p>task.name: <%= task.name %></p>
+      <p>task.completed: <%= task.completed %></p>
+    </li>
+    <% }) %>
+  </div>
 </body>
