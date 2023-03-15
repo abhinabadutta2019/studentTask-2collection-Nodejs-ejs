@@ -1,6 +1,7 @@
 const express = require("express");
 const { default: mongoose } = require("mongoose");
 const Student = require("../model/student");
+const { findByIdAndDelete } = require("../model/task");
 const Task = require("../model/task");
 const router = express.Router();
 
@@ -34,6 +35,26 @@ router.post("/form", async (req, res) => {
 
   res.send();
 });
+
+// student delete method
+//delete all tasks created by this student
+router.delete("/delete", async (req, res) => {
+  try {
+    console.log(req.query.studentId, "from backend");
+
+    const deleteStudent = await Student.findByIdAndDelete(req.query.studentId);
+    console.log(deleteStudent, "deleteStudent");
+
+    ////
+    const deleteAllTaskofThisStudent = await Task.deleteMany({
+      postedBy: req.query.studentId,
+    });
+    console.log(deleteAllTaskofThisStudent, "deleteAllTaskofThisStudent");
+    res.send();
+  } catch (e) {
+    console.log(e);
+  }
+});
 //get single page
 
 router.get("/single/:id", async (req, res) => {
@@ -46,11 +67,6 @@ router.get("/single/:id", async (req, res) => {
   } catch (e) {
     console.log(e);
   }
-});
-
-//
-router.post("/allTasksThisUser", async (req, res) => {
-  console.log(req.url);
 });
 
 //seed route

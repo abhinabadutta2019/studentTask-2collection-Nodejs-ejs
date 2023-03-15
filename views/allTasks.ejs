@@ -6,7 +6,33 @@
       <p>task.id: <%= task.id %></p>
       <p>task.name: <%= task.name %></p>
       <p>task.completed: <%= task.completed %></p>
+      <!-- ------ -->
+      <!-- Task delete button -->
+      <!--  -->
+      <button id="<%= task.id %>" onclick="onDelete()">Delete Task</button>
     </li>
     <% }) %>
   </div>
+  <script>
+    // task delete function
+    function onDelete() {
+      console.log("Hi33");
+
+      //get id- from button click
+      let id = event.srcElement.id;
+      // console.log(id);
+      //
+      fetch(`/tasks/delete?taskId=${id}`, { method: "Delete" }).then(
+        (response) => {
+          //
+          console.log(id, "from fetch");
+
+          //reloading page
+          window.location.href = window.location.href;
+
+          return;
+        }
+      );
+    }
+  </script>
 </body>

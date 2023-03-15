@@ -43,8 +43,17 @@ router.post("/form", async (req, res) => {
 });
 
 //
+router.delete("/delete", async (req, res) => {
+  console.log(req.query.taskId, "Hi back");
+  //
+  const deletedTask = await Task.findByIdAndDelete(req.query.taskId);
+  console.log(deletedTask, "deletedTask");
+  res.send();
+});
+
 ///////////////////////////////////////
-//
+//all tasks of the same student//////////
+/////////////////////////////////////////
 router.get("/allTasksThisUser", async (req, res) => {
   // console.log(req.url);
   // console.log(req.query.studentId);
@@ -52,14 +61,14 @@ router.get("/allTasksThisUser", async (req, res) => {
     postedBy: req.query.studentId,
   });
 
-  console.log(taskofSameId, " tatai >>>list of alltehe tasks of this user");
+  console.log(taskofSameId, " tatai >>>list of all the tasks of this user");
 
   //ei page e redirect kora hocche--
   //--/tasks/allTasksThisUser
   res.render("allTasks.ejs", { alltasks: taskofSameId });
 });
 
-//
+//trying method( not related to project)
 router.get("/create", async (req, res) => {
   const task = await Task.create({
     name: "new111 vv",
@@ -70,6 +79,7 @@ router.get("/create", async (req, res) => {
   res.send();
 });
 
+//trying populate method( not related to project)
 router.get("/populate", async (req, res) => {
   const task = await Task.find({ _id: "640b97e575a15356ce14f857" }).populate(
     "postedBy"
@@ -78,7 +88,7 @@ router.get("/populate", async (req, res) => {
   res.send();
 });
 
-// seed route
+// seed route --trying method( not related to project)
 router.get("/seed", async (req, res) => {
   //delete all existing
   await Task.deleteMany({});

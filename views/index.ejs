@@ -6,6 +6,9 @@
       <p>Name:<%= student.name %></p>
       <p>Password:<%= student.password %></p>
       <button id="<%= student.id %>" onclick="onDetails()">Detail</button>
+      <button id="<%= student.id %>" onclick="onStudentDelete()">
+        Delete Student
+      </button>
     </li>
     <% }) %>
   </ul>
@@ -21,6 +24,25 @@
   </ul>
 
   <script>
+    //student delete function
+    function onStudentDelete() {
+      console.log("Hi ss");
+
+      //get id- from button click
+      let id = event.srcElement.id;
+      console.log(id);
+      //
+      fetch(`/students/delete?studentId=${id}`, { method: "Delete" }).then(
+        (response) => {
+          console.log(id, "from fetch");
+
+          //reload page
+
+          window.location.reload();
+        }
+      );
+    }
+    //function for student details page
     function onDetails() {
       let id = event.srcElement.id;
 
